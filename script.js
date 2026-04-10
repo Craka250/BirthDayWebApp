@@ -24,10 +24,39 @@ function randomColor() {
 }
 
 // Music Toggle
+/*
 musicBtn.onclick = () => {
   if (music.paused) music.play();
   else music.pause();
+} */
+
+  // Try autoplay on load
+window.addEventListener('load', () => {
+  playMusic();
+});
+
+// Fallback: play on first user interaction
+document.addEventListener('click', () => {
+  if (music.paused) playMusic();
+}, { once: true });
+
+// Play function (handles browser restrictions)
+function playMusic() {
+  music.play().catch(() => {
+    console.log("Autoplay blocked, waiting for user interaction...");
+  });
 }
+
+// Music Toggle Button
+musicBtn.onclick = () => {
+  if (music.paused) {
+    playMusic();
+    musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+  } else {
+    music.pause();
+    musicBtn.innerHTML = '<i class="fa-solid fa-music"></i> Music';
+  }
+};
 
 // Popup
 messageBtn.onclick = () => {
