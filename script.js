@@ -30,6 +30,7 @@ musicBtn.onclick = () => {
   else music.pause();
 } */
 
+  /*
   // Try autoplay on load
 window.addEventListener('load', () => {
   playMusic();
@@ -44,6 +45,7 @@ document.addEventListener('click', () => {
 function playMusic() {
   music.play().catch(() => {
     console.log("Autoplay blocked, waiting for user interaction...");
+    music.volume = 0.5; // 50% volume
   });
 }
 
@@ -54,6 +56,46 @@ musicBtn.onclick = () => {
     musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
   } else {
     music.pause();
+    musicBtn.innerHTML = '<i class="fa-solid fa-music"></i> Music';
+  }
+};
+*/
+
+let isPlaying = false;
+
+// Try autoplay once on load
+window.addEventListener('load', () => {
+  startMusic();
+});
+
+// Fallback: first user interaction (ONLY if not already started)
+document.addEventListener('click', () => {
+  if (!isPlaying) startMusic();
+}, { once: true });
+
+// Safe play function (prevents duplicates)
+function startMusic() {
+  if (isPlaying) return;
+
+  music.volume = 0.5;
+
+  music.play().then(() => {
+    isPlaying = true;
+    musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+  }).catch(() => {
+    console.log("Autoplay blocked, waiting for interaction...");
+  });
+}
+
+// Toggle Button
+musicBtn.onclick = () => {
+  if (music.paused) {
+    music.play();
+    isPlaying = true;
+    musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+  } else {
+    music.pause();
+    isPlaying = false;
     musicBtn.innerHTML = '<i class="fa-solid fa-music"></i> Music';
   }
 };
