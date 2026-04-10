@@ -1,60 +1,96 @@
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c, #42e695);
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
-}
-
-.container {
-  text-align: center;
+  color: white;
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 40px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(15px);
+  padding: 30px;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  max-width: 500px;
+  text-align: center;
+  max-width: 600px;
   animation: fadeIn 1.5s ease;
 }
 
 .title {
   font-size: 2.5rem;
-  margin-bottom: 10px;
-  animation: pop 1s ease;
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #fff; }
+  to { text-shadow: 0 0 20px #ff0; }
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
-.message p {
-  margin: 10px 0;
-  line-height: 1.6;
+.gallery {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 20px 0;
 }
 
-button {
-  margin-top: 20px;
-  padding: 12px 25px;
+.gallery img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.gallery img.active {
+  opacity: 1;
+}
+
+.buttons button {
+  margin: 10px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 30px;
-  background: #ff7eb3;
-  color: white;
-  font-size: 1rem;
+  border-radius: 25px;
   cursor: pointer;
+  background: #fff;
+  color: #333;
   transition: 0.3s;
 }
 
-button:hover {
-  background: #ff4f81;
-  transform: scale(1.05);
+.buttons button:hover {
+  transform: scale(1.1);
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background: white;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  }
+
+.hidden {
+  display: none;
 }
 
 @keyframes fadeIn {
@@ -62,16 +98,10 @@ button:hover {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes pop {
-  0% { transform: scale(0.5); }
-  100% { transform: scale(1); }
-}
-
 .confetti {
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: red;
   top: 0;
   animation: fall linear forwards;
 }

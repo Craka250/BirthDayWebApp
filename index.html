@@ -4,29 +4,63 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Happy Birthday</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
+  <!-- Background Music -->
+  <audio id="bgMusic" src="assets/music.mp3" loop></audio>
+
   <div class="container">
     <div class="card">
-      <h1 class="title">🎉 Happy Birthday 🎉</h1>
-      <p class="subtitle">A special day to celebrate life, growth, and blessings.</p>
+
+      <h1 class="title">
+        <i class="fa-solid fa-cake-candles"></i> Happy Birthday
+      </h1>
+
+      <p class="subtitle">Celebrating life, growth, and blessings 🎉</p>
 
       <div class="message">
         <p>
           I thank God for this far. I pray for continued guidance, protection, good health, and wisdom.
-          May blessings overflow in every step ahead.
         </p>
         <p>
-          May my family, friends, and mentors be protected and prosper.
-          Grateful for the amazing people around me, especially my favorite software engineers — your impact is priceless.
+          May blessings overflow. May my family, friends, and mentors be protected and prosper.
         </p>
       </div>
 
-      <button id="celebrateBtn">Celebrate 🎂</button>
+      <!-- Gallery -->
+      <div class="gallery">
+        <img src="assets/images/img1.jpg" class="active" />
+        <img src="assets/images/img2.jpg" />
+        <img src="assets/images/img3.jpg" />
+      </div>
 
-      <div id="confetti-container"></div>
+      <!-- Buttons -->
+      <div class="buttons">
+        <button id="celebrateBtn"><i class="fa-solid fa-gift"></i> Celebrate</button>
+        <button id="musicBtn"><i class="fa-solid fa-music"></i> Music</button>
+        <button id="messageBtn"><i class="fa-solid fa-envelope"></i> Message</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <h2><i class="fa-solid fa-heart"></i> Special Message</h2>
+      <p>
+        Thank you God for life. May the journey ahead be filled with joy, success, and divine favor.
+      </p>
+      <button onclick="closePopup()">Close</button>
     </div>
   </div>
 
